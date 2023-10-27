@@ -57,7 +57,7 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         val observer = Observer<SuperHeroesViewModel.SuperHeroeUiState> {
-            superHeroesAdapter.setDataList(it.superHeroes)
+            superHeroesAdapter.submitList(it.superHeroes)
         }
         viewModel.uiState.observe(this, observer)
     }
