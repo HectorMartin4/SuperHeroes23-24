@@ -11,12 +11,12 @@ interface ApiServices {
     suspend fun getSuperHeroes(): Response<List<SuperHeroeApiModel>>
 
     @GET("id/{id}.json")
-    suspend fun getSuperHeroeId(@Path("id") superHeroeid: Int): Response<SuperHeroeApiModel>
+    suspend fun getSuperHeroeId(@Path("id") id: Int): Response<SuperHeroeApiModel>
 
-    @GET("biography/{biography}/fullName.json")
-    suspend fun getBiography(@Path("biography") superHeroeid: Int): Response<BiographyApiModel>
+    @GET("biography/{id}.json")
+    suspend fun getBiography(@Path("id") id: Int): Response<BiographyApiModel>
 
-    @GET("work/{work}/occupation.json")
-    suspend fun getWork(@Path("work") superHeroeid: Int): Response<WorkApiModel>
+    @GET("work/{id}.json")
+    suspend fun getWork(@Path("id") id: Int): Response<WorkApiModel>
 
 }

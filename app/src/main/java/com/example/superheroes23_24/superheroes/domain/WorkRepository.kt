@@ -5,5 +5,5 @@ import com.example.superheroes23_24.app.errors.ErrorApp
 
 interface WorkRepository {
 
-    fun getWork(): Either<ErrorApp, Work>
+    suspend fun getWork(id: Int): Either<ErrorApp, Work>
 }

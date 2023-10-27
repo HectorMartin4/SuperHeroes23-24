@@ -2,16 +2,14 @@ package com.example.superheroes23_24.superheroes.data
 
 import com.example.superheroes23_24.app.errors.Either
 import com.example.superheroes23_24.app.errors.ErrorApp
-import com.example.superheroes23_24.app.errors.left
-import com.example.superheroes23_24.app.errors.right
 import com.example.superheroes23_24.superheroes.data.local.XmlLocalDataSource
-import com.example.superheroes23_24.superheroes.data.remote.RemoteDataSource
+import com.example.superheroes23_24.superheroes.data.remote.SuperHeroeRemoteDataSource
 import com.example.superheroes23_24.superheroes.domain.SuperHeroe
 import com.example.superheroes23_24.superheroes.domain.SuperHeroeRepository
 
 class SuperHeroeDataRepository(
     private val localSource: XmlLocalDataSource,
-    private val remoteSource: RemoteDataSource
+    private val remoteSource: SuperHeroeRemoteDataSource
 ) : SuperHeroeRepository {
 
     override suspend fun getSuperHeroes(): Either<ErrorApp, List<SuperHeroe>> {

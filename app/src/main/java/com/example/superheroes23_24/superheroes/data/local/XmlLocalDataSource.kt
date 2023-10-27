@@ -1,7 +1,7 @@
 package com.example.superheroes23_24.superheroes.data.local
 
 import android.content.Context
-import com.example.superheroes23_24.app.Serializer
+import com.example.superheroes23_24.app.extensions.Serializer
 import com.example.superheroes23_24.app.errors.Either
 import com.example.superheroes23_24.app.errors.ErrorApp
 import com.example.superheroes23_24.app.errors.left

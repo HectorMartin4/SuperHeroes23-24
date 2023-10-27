@@ -5,5 +5,5 @@ import com.example.superheroes23_24.app.errors.ErrorApp
 
 interface BiographyRepository {
 
-    fun getBiography(): Either<ErrorApp, Biography>
+    suspend fun getBiography(id: Int): Either<ErrorApp, Biography>
 }
