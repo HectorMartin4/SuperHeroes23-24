@@ -20,6 +20,7 @@ class SuperHeroesViewModel(
     val uiState: LiveData<SuperHeroeUiState> = _uiState
 
     fun loadSuperHeroes(){
+        _uiState.value = SuperHeroeUiState(isLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
             val feed = getSuperHeroeFeedUseCase.invoke()
             feed.fold(
@@ -35,7 +36,9 @@ class SuperHeroesViewModel(
         }
     }
 
-    private fun responseError(errorApp: ErrorApp): Either<ErrorApp, GetSuperHeroeFeedUseCase.SuperHeroeFeed> = errorApp.left()
+    private fun responseError(errorApp: ErrorApp){
+        _uiState.postValue(SuperHeroeUiState(errorApp = errorApp))
+    }
 
     data class SuperHeroeUiState(
         val errorApp: ErrorApp? = null,
