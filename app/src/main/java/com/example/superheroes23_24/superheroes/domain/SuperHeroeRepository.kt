@@ -5,8 +5,8 @@ import com.example.superheroes23_24.app.errors.ErrorApp
 
 interface SuperHeroeRepository {
 
-    fun getSuperHeroes(): Either<ErrorApp, List<SuperHeroe>>
+    suspend fun getSuperHeroes(): Either<ErrorApp, List<SuperHeroe>>
 
-    fun getSuperHeroeId(): Either<ErrorApp, SuperHeroe>
+    suspend fun getSuperHeroeId(id: Int): Either<ErrorApp, SuperHeroe>
 
 }
