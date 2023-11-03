@@ -18,3 +18,13 @@ data class Biography(
 data class Work(
     val occupation: String
 )
+
+data class PowerStats(
+    val intelligence: Int,
+    val speed: Int,
+    val combat: Int
+)
+
+data class Connections(
+    val affiliation: String
+)
