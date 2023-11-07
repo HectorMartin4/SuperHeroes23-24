@@ -1,4 +1,4 @@
-package com.example.superheroes23_24.app
+package com.example.superheroes23_24.app.extensions
 
 import com.google.gson.Gson
 

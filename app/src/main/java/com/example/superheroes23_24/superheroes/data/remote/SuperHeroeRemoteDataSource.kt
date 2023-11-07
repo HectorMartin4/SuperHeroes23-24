@@ -6,7 +6,7 @@ import com.example.superheroes23_24.superheroes.data.remote.api.ApiClient
 import com.example.superheroes23_24.superheroes.data.remote.api.toDomain
 import com.example.superheroes23_24.superheroes.domain.SuperHeroe
 
-class RemoteDataSource {
+class SuperHeroeRemoteDataSource {
 
     private val apiClient = ApiClient()
 
@@ -21,4 +21,6 @@ class RemoteDataSource {
     suspend fun getSuperHeroeId(id: Int): Either<ErrorApp, SuperHeroe> = apiClient.getSuperHeroeId(id).map {
         it.toDomain()
     }
+
+
 }
