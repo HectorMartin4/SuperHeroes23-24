@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SuperHeroes23-24</string>
     <string name="label_unknow_error">Hay un error desconocido</string>
+    <string name="label_intelligence">Intligencia</string>
+    <string name="label_speed">Velocidad</string>
+    <string name="label_combat">Combate</string>
 </resources>

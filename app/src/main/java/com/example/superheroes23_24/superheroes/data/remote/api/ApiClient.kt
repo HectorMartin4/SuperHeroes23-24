@@ -67,4 +67,24 @@ class ApiClient {
             ErrorApp.UnknowError.left()
         }
     }
+
+    suspend fun getPowerStats(id: Int): Either<ErrorApp, PowerStatsApiModel> {
+        val response = apiEndPoint.getPowerStats(id)
+
+        return if (response.isSuccessful){
+            response.body()!!.right()
+        } else {
+            ErrorApp.UnknowError.left()
+        }
+    }
+
+    suspend fun getConnections(id: Int): Either<ErrorApp, ConnectionsApiModel> {
+        val response = apiEndPoint.getConnections(id)
+
+        return if (response.isSuccessful){
+            response.body()!!.right()
+        } else {
+            ErrorApp.UnknowError.left()
+        }
+    }
 }

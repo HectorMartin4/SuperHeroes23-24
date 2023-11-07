@@ -22,3 +22,13 @@ data class ImageApiModel(
     @SerializedName("md") val md: String,
     @SerializedName("lg") val lg: String
 )
+
+data class PowerStatsApiModel(
+    @SerializedName("intelligence") val intelligence: Int,
+    @SerializedName("speed") val speed: Int,
+    @SerializedName("combat") val combat: Int
+)
+
+data class ConnectionsApiModel(
+    @SerializedName("groupAffiliation") val affiliation: String
+)

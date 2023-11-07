@@ -19,4 +19,10 @@ interface ApiServices {
     @GET("work/{id}.json")
     suspend fun getWork(@Path("id") id: Int): Response<WorkApiModel>
 
+    @GET("powerstats/{id}.json")
+    suspend fun getPowerStats(@Path("id") id: Int): Response<PowerStatsApiModel>
+
+    @GET("connections/{id}.json")
+    suspend fun getConnections(@Path("id") id: Int): Response<ConnectionsApiModel>
+
 }

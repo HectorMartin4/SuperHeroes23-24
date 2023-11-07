@@ -12,4 +12,6 @@
     <dimen name="ic_size">32dp</dimen>
     <dimen name="occupation_width">200dp</dimen>
     <dimen name="occupation_height">15dp</dimen>
+    <dimen name="detail_image_height">150dp</dimen>
+    <dimen name="detail_title_size">20dp</dimen>
 </resources>
