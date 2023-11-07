@@ -1,5 +1,6 @@
 package com.example.superheroes23_24.superheroes.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -17,6 +18,7 @@ import com.example.superheroes23_24.superheroes.data.remote.SuperHeroeRemoteData
 import com.example.superheroes23_24.superheroes.data.remote.WorkRemoteDataSource
 import com.example.superheroes23_24.superheroes.domain.GetSuperHeroeFeedUseCase
 import com.example.superheroes23_24.superheroes.presentation.adapter.SuperHeroesAdapter
+import com.example.superheroes23_24.superheroes.presentation.detail.SuperHeroesDetailActivity
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 
@@ -76,10 +78,19 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
                     showError(it.errorApp)
                 } else {
                     superHeroesAdapter.submitList(it.superHeroes)
+                    superHeroesAdapter.setOnClickDetail {
+                        navigateToDetail(it)
+                    }
                 }
             }
         }
         viewModel.uiState.observe(this, observer)
+    }
+
+    fun navigateToDetail(id: Int){
+        val intent = Intent(this, SuperHeroesDetailActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
     }
 
     private fun showError (error : ErrorApp){

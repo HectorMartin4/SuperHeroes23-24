@@ -9,14 +9,21 @@ import com.example.superheroes23_24.superheroes.domain.GetSuperHeroeFeedUseCase
 
 class SuperHeroesViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    fun render(superHeroe: GetSuperHeroeFeedUseCase.SuperHeroeFeed) {
-        val binding = ViewItemSuperHeroesFeedBinding.bind(view)
+    val binding = ViewItemSuperHeroesFeedBinding.bind(view)
+    fun render(
+        superHeroe: GetSuperHeroeFeedUseCase.SuperHeroeFeed,
+        onClickDetail: ((Int) -> Unit)?
+    ) {
 
         binding.apply {
             image.setUrl(superHeroe.image)
             title.text = superHeroe.name
             name.text = superHeroe.fullName
             occupation.text = superHeroe.occupation
+            icNavigate.setOnClickListener {
+                onClickDetail!!.invoke(superHeroe.id)
+
+            }
         }
     }
 }
