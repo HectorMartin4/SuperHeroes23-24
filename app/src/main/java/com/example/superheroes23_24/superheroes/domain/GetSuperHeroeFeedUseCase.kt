@@ -5,5 +5,5 @@ import com.example.superheroes23_24.app.errors.ErrorApp
 
 class GetSuperHeroeFeedUseCase(private val repository: SuperHeroeRepository) {
 
-    operator fun invoke(): Either<ErrorApp, SuperHeroe> = repository.getSuperHeroeId()
+    suspend operator fun invoke(id: Int): Either<ErrorApp, SuperHeroe> = repository.getSuperHeroeId(id)
 }
