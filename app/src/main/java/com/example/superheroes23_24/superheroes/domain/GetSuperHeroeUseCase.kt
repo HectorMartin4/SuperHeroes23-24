@@ -1,6 +1,5 @@
 package com.example.superheroes23_24.superheroes.domain
 
-import android.media.Image
 import com.example.superheroes23_24.app.errors.Either
 import com.example.superheroes23_24.app.errors.ErrorApp
 
@@ -24,6 +23,7 @@ class GetSuperHeroeUseCase(
                 it.id,
                 it.name,
                 it.getImageLg(),
+                it.image,
                 biography.fullName,
                 connection.affiliation,
                 stats.intelligence,
@@ -37,7 +37,8 @@ class GetSuperHeroeUseCase(
     data class SuperHeroeDetail(
         val id: Int,
         val name: String,
-        val image: String,
+        val bannerImage: String,
+        val images: List<String>,
         val fullName: String,
         val affiliation: String,
         val intelligence: Int,
