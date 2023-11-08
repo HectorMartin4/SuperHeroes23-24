@@ -3,7 +3,6 @@ package com.example.superheroes23_24.superheroes.presentation.adapter
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.superheroes23_24.app.extensions.setUrl
-import com.example.superheroes23_24.databinding.ActivitySuperHeroesFeedBinding
 import com.example.superheroes23_24.databinding.ViewItemSuperHeroesFeedBinding
 import com.example.superheroes23_24.superheroes.domain.GetSuperHeroeFeedUseCase
 

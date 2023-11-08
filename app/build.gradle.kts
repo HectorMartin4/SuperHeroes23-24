@@ -71,4 +71,8 @@ dependencies {
 
     //Corrutinas
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
+
+    val fragmentVersion = "1.6.2"
+    implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
 }

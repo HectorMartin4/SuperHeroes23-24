@@ -1,16 +1,21 @@
 package com.example.superheroes23_24.superheroes.presentation
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.superheroes23_24.MainActivity
 import com.example.superheroes23_24.R
 import com.example.superheroes23_24.app.errors.ErrorApp
 import com.example.superheroes23_24.app.extensions.GsonJSerializer
 import com.example.superheroes23_24.app.extensions.hide
 import com.example.superheroes23_24.app.extensions.visible
-import com.example.superheroes23_24.databinding.ActivitySuperHeroesFeedBinding
+import com.example.superheroes23_24.databinding.FragmentSuperHeroesFeedBinding
 import com.example.superheroes23_24.superheroes.data.SuperHeroeDataRepository
 import com.example.superheroes23_24.superheroes.data.local.XmlLocalDataSource
 import com.example.superheroes23_24.superheroes.data.remote.BiographyRemoteDataSource
@@ -18,13 +23,14 @@ import com.example.superheroes23_24.superheroes.data.remote.SuperHeroeRemoteData
 import com.example.superheroes23_24.superheroes.data.remote.WorkRemoteDataSource
 import com.example.superheroes23_24.superheroes.domain.GetSuperHeroeFeedUseCase
 import com.example.superheroes23_24.superheroes.presentation.adapter.SuperHeroesAdapter
-import com.example.superheroes23_24.superheroes.presentation.detail.SuperHeroesDetailActivity
+import com.example.superheroes23_24.superheroes.presentation.detail.SuperHeroesDetailFragment
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 
-class SuperHeroesFeedActivity : AppCompatActivity() {
+class SuperHeroesFeedFragment : Fragment() {
 
-    private lateinit var binding: ActivitySuperHeroesFeedBinding
+    private var _binding: FragmentSuperHeroesFeedBinding? = null
+    private val binding get() = _binding!!
     private val superHeroesAdapter = SuperHeroesAdapter()
 
     val viewModel: SuperHeroesViewModel by lazy {
@@ -32,7 +38,7 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
             GetSuperHeroeFeedUseCase(
                 SuperHeroeDataRepository(
                     XmlLocalDataSource(
-                        this,
+                        requireContext(),
                         GsonJSerializer()
                     ), SuperHeroeRemoteDataSource()
                 ),
@@ -46,20 +52,26 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
         binding.listSuperHeroeFeed.applySkeleton(R.layout.view_item_super_heroes_feed, 8)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivitySuperHeroesFeedBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        setupObservers()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentSuperHeroesFeedBinding.inflate(inflater, container, false)
         setupView()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupObservers()
         viewModel.loadSuperHeroes()
     }
 
     private fun setupView(){
         binding.apply {
             listSuperHeroeFeed.layoutManager = LinearLayoutManager(
-                this@SuperHeroesFeedActivity,
+                requireContext(),
                 LinearLayoutManager.VERTICAL,
                 false
             )
@@ -84,13 +96,13 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
                 }
             }
         }
-        viewModel.uiState.observe(this, observer)
+        viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
     fun navigateToDetail(id: Int){
-        val intent = Intent(this, SuperHeroesDetailActivity::class.java)
-        intent.putExtra("id", id)
-        startActivity(intent)
+        val result = id
+        (activity as MainActivity).changeFragment(SuperHeroesDetailFragment.newInstance())
+        setFragmentResult("requestKey", bundleOf("bundleKey" to result))
     }
 
     private fun showError (error : ErrorApp){

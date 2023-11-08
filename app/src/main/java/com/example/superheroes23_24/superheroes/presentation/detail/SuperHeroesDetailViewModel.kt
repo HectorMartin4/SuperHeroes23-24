@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.superheroes23_24.app.errors.ErrorApp
-import com.example.superheroes23_24.superheroes.domain.GetSuperHeroeFeedUseCase
 import com.example.superheroes23_24.superheroes.domain.GetSuperHeroeUseCase
-import com.example.superheroes23_24.superheroes.presentation.SuperHeroesViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
