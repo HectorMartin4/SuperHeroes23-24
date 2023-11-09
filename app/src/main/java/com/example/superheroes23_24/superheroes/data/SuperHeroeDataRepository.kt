@@ -32,11 +32,11 @@ class SuperHeroeDataRepository(
         var superHeroe = localSource.getSuperHeroeId(id)
 
         return if (superHeroe.isLeft()) {
+            superHeroe = remoteSource.getSuperHeroeId(id)
+
             superHeroe
 
         } else {
-            superHeroe = remoteSource.getSuperHeroeId(id)
-
             superHeroe
         }
     }
